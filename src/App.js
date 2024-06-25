@@ -1,7 +1,7 @@
 import './App.css';
 import {useEffect, useState} from "react";
 import {fetchCars} from "./services/api";
-
+import {motion} from "framer-motion";
 
 const App = () => {
 
@@ -78,7 +78,13 @@ const App = () => {
               </button>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                   {filteredCars.map(car => (
-                      <div key={car.id.carId} className="border p-4 rounded">
+                      <motion.div key={car.id.carId} className="border p-4 rounded"
+                        layout
+                        initial={{opacity: 0}}
+                        animate={{opacity: 1}}
+                        exit={{opacity: 0}}
+                        transition={{duration: 0.5}}
+                      >
                           <img
                               src={car.imageUrls[0]}
                               alt={`${car.brand} ${car.model}`}
@@ -87,7 +93,7 @@ const App = () => {
                           <h2 className="text-xl font-semibold">{car.brand} {car.model}</h2>
                           <p className="text-gray-600">{car.type}</p>
                           <p className="text-blue-600 font-bold">€{car.price}</p>
-                      </div>
+                      </motion.div>
                   ))}
               </div>
           </div>
