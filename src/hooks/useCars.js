@@ -7,6 +7,7 @@ const useCars = (ownerId) => {
     const [carplayFilter, setCarplayFilter] = useState(false);
     const [sortOrder, setSortOrder] = useState('asc');
 
+    // Fetching cars using the api service
     useEffect(() => {
         const getCars = async () => {
             try {
@@ -20,6 +21,7 @@ const useCars = (ownerId) => {
         getCars();
     }, [ownerId]);
 
+    // Filtering by Apple Carplay/Android Auto and sorting by price
     useEffect(() => {
         let filtered = [...cars];
 
